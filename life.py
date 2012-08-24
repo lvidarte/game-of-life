@@ -167,11 +167,11 @@ class Life(object):
 if __name__ == '__main__':
 
     from optparse import OptionParser
-    parser = OptionParser(description="Random maze game")
+    parser = OptionParser(description="Game of life")
     parser.add_option('-W', '--width', type=int, default=20,
-                      help="maze width (must be odd)")
+                      help="board width (in cells)")
     parser.add_option('-H', '--height', type=int, default=20,
-                      help="maze height (must be odd)")
+                      help="board height (in cells)")
     parser.add_option('-s', '--size', type=int, default=15,
                       help="cell size")
     args, _ = parser.parse_args()
