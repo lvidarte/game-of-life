@@ -4,6 +4,8 @@
 import time
 import Tkinter as tk
 
+from patterns import patterns
+
 
 class Application(tk.Frame):
 
@@ -65,6 +67,14 @@ class Application(tk.Frame):
                                   command=self.init_life)
         self.btn_reset.grid()
 
+        self.pattern = tk.StringVar(self.sidebar)
+        self.pattern.set(patterns.keys()[0])
+        self.opt_patterns = tk.OptionMenu(self.sidebar,
+                                          self.pattern,
+                                          *patterns.keys())
+        self.opt_patterns.grid()
+
+
     def draw_grid(self):
         color = 'gray'
         for i in xrange(self.width - 1):
@@ -85,23 +95,47 @@ class Application(tk.Frame):
         if isinstance(event.widget, tk.Canvas):
             x = event.x / self.size
             y = event.y / self.size
-            self._toggle_cell((x, y))
+            if self.pattern.get() == patterns.keys()[0]:
+                self._toggle_cell((x, y))
+            else:
+                self.draw_pattern((x, y))
 
     def _toggle_cell(self, cell):
+        if cell not in self.living_cells:
+            self.draw_cell(cell)
+        else:
+            self.del_cell(cell)
+
+    def draw_cell(self, cell):
+        if cell not in self.living_cells:
             x, y = cell
-            if cell not in self.living_cells:
-                x0 = x * self.size
-                y0 = y * self.size
-                x1 = x0 + self.size
-                y1 = y0 + self.size
-                id = self.canvas.create_rectangle(x0, y0, x1, y1,
-                                                  width=0, fill='black')
-                self.living_cells[cell] = id
-                self.life.board[y][x] = 1
-            else:
-                self.canvas.delete(self.living_cells[cell])
-                del self.living_cells[cell]
-                self.life.board[y][x] = 0
+            x0 = x * self.size
+            y0 = y * self.size
+            x1 = x0 + self.size
+            y1 = y0 + self.size
+            id = self.canvas.create_rectangle(x0, y0, x1, y1,
+                                              width=0, fill='black')
+            self.living_cells[cell] = id
+            self.life.board[y][x] = 1
+
+    def del_cell(self, cell):
+        x, y = cell
+        try:
+            self.canvas.delete(self.living_cells[cell])
+            del self.living_cells[cell]
+        except KeyError:
+            pass
+        self.life.board[y][x] = 0
+
+    def draw_pattern(self, cell):
+        x, y = cell
+        pattern = patterns[self.pattern.get()]
+        for x0 in xrange(len(pattern[0])):
+            for y0 in xrange(len(pattern)):
+                x1 = x + x0 % self.width
+                y1 = y + y0 % self.height
+                if pattern[y0][x0] == 1:
+                    self.draw_cell((x1, y1))
 
     def start(self):
         self._running = True
