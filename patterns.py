@@ -86,10 +86,24 @@ _tagalong_nn = (
 
 # Oscilators
 _blinker_period_2 = (
-    (0,1,0),
-    (0,1,0),
-    (0,1,0),
+    (1,),
+    (1,),
+    (1,),
     )
+
+_toad_period_2 = (
+    (0,0,1,0),
+    (1,0,0,1),
+    (1,0,0,1),
+    (0,1,0,0),
+)
+
+_beacon_period_2 = (
+    (1,1,0,0),
+    (1,0,0,0),
+    (0,0,0,1),
+    (0,0,1,1),
+)
 
 _star_period_3 = (
     (0,0,0,0,0,0,0,0,0,0,0,0,0),
@@ -227,7 +241,32 @@ _pentadecathlon_period_5 = (
     (0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0),
 )
 
-# Freak
+# Steel lives
+_block = (
+    (1,1),
+    (1,1),
+    )
+
+_boat = (
+    (1,1,0),
+    (1,0,1),
+    (0,1,0),
+    )
+
+_beehive = (
+    (0,1,1,0),
+    (1,0,0,1),
+    (0,1,1,0),
+    )
+
+_loaf = (
+    (0,1,1,0),
+    (1,0,0,1),
+    (0,1,0,1),
+    (0,0,1,0),
+    )
+
+# Guns
 _gosper_glider_gun = (
     (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0),
     (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0),
@@ -297,6 +336,8 @@ patterns = OrderedDict([
     ('Spaceship 70P5H2V0 (180)', rotate(_spaceship_70p5h2v0, 180)),
     ('--- Oscilators ---', None),
     ('Blinker, period 2', _blinker_period_2),
+    ('Toad, period 2', _toad_period_2),
+    ('Beacon, period 2', _beacon_period_2),
     ('Star, period 3', _star_period_3),
     ('Cross, period 3', _cross_period_3),
     ('French kiss, period 3', _french_kiss_period_3),
@@ -313,6 +354,11 @@ patterns = OrderedDict([
     ('Kok\'s galaxy, period 8', _koks_galaxy_period_8),
     ('Pentadecathlon, period 15', _pentadecathlon_period_5),
     ('Pentadecathlon, period 15 (90)', rotate(_pentadecathlon_period_5, 90)),
-    ('--- Freak ---', None),
+    ('--- Still lives ---', None),
+    ('Block', _block),
+    ('Boat', _boat),
+    ('Beehive', _beehive),
+    ('Loaf', _loaf),
+    ('--- Guns ---', None),
     ('Gosper glider gun', _gosper_glider_gun),
     ])
