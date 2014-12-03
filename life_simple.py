@@ -44,7 +44,7 @@ def get_neighbors(cell, board):
             board[y_down][x_right],)
 
 def evolve(board):
-    board_ = [[0] * WIDTH for _ in xrange(HEIGHT)] # all dead (megadeth)
+    board_ = [[0] * WIDTH for _ in xrange(HEIGHT)]
     for x in xrange(WIDTH):
         for y in xrange(HEIGHT):
             v = board[y][x]
@@ -64,7 +64,7 @@ def show(board):
         print 
 
 for i in range(30):
-    board = evolve(board)
     show(board)
+    board = evolve(board)
     print "-" * 16
 
