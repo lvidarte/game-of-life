@@ -2,6 +2,16 @@
 # -*- coding: utf-8 -*-
 
 """
+Author: Leo Vidarte <http://nerdlabs.com.ar>
+
+This is free software,
+you can redistribute it and/or modify it
+under the terms of the GPL version 3
+as published by the Free Software Foundation.
+
+"""
+
+"""
 Las transiciones dependen del número de células vecinas vivas:
 
   * Una célula muerta con exactamente 3 células vecinas vivas "nace"

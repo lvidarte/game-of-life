@@ -1,6 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+Author: Leo Vidarte <http://nerdlabs.com.ar>
+
+This is free software,
+you can redistribute it and/or modify it
+under the terms of the GPL version 3
+as published by the Free Software Foundation.
+
+"""
+
 import time
 import Tkinter as tk
 
@@ -281,12 +291,12 @@ if __name__ == '__main__':
 
     from optparse import OptionParser
     parser = OptionParser(description="Game of life")
-    parser.add_option('-W', '--width', type=int, default=60,
-                      help="world width (in cells)")
+    parser.add_option('-W', '--width', type=int, default=80,
+                      help="world width (default: 80)")
     parser.add_option('-H', '--height', type=int, default=40,
-                      help="world height (in cells)")
-    parser.add_option('-s', '--size', type=int, default=12,
-                      help="cell size")
+                      help="world height (default: 40)")
+    parser.add_option('-s', '--size', type=int, default=20,
+                      help="cell size (default: 20)")
     args, _ = parser.parse_args()
 
     app = Application(args.width, args.height, args.size)
