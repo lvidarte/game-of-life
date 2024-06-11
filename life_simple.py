@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """
 Author: Leo Vidarte <http://nerdlabs.com.ar>
 
@@ -54,9 +51,9 @@ def get_neighbors(cell, board):
             board[y_down][x_right],)
 
 def evolve(board):
-    board_ = [[0] * WIDTH for _ in xrange(HEIGHT)]
-    for x in xrange(WIDTH):
-        for y in xrange(HEIGHT):
+    board_ = [[0] * WIDTH for _ in range(HEIGHT)]
+    for x in range(WIDTH):
+        for y in range(HEIGHT):
             v = board[y][x]
             n = get_neighbors((x, y), board)
             t = n.count(1)
@@ -70,11 +67,11 @@ def show(board):
     for row in board:
         for col in row:
             cell = ' ' if col == 0 else '#'
-            print cell,
-        print 
+            print(cell, end='')
+        print()
 
 for i in range(30):
     show(board)
     board = evolve(board)
-    print "-" * 16
+    print("-" * 16)
 

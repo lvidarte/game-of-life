@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """
 Author: Leo Vidarte <http://nerdlabs.com.ar>
 
@@ -12,7 +9,7 @@ as published by the Free Software Foundation.
 """
 
 import time
-import Tkinter as tk
+import tkinter as tk
 
 from patterns import patterns
 
@@ -126,12 +123,12 @@ class Application(tk.Frame):
 
     def draw_grid(self):
         color = 'gray'
-        for i in xrange(self.width - 1):
+        for i in range(self.width - 1):
             x = (self.size * i) + self.size
             y0 = 0
             y1 = self.size * self.height
             self.canvas.create_line(x, y0, x, y1, fill=color)
-        for i in xrange(self.height - 1):
+        for i in range(self.height - 1):
             x0 = 0
             x1 = self.size * self.width
             y = (self.size * i) + self.size
@@ -142,8 +139,8 @@ class Application(tk.Frame):
 
     def draw(self, event):
         if isinstance(event.widget, tk.Canvas):
-            x = event.x / self.size
-            y = event.y / self.size
+            x = event.x // self.size
+            y = event.y // self.size
             items = self.lst_patterns.curselection()
             pattern = patterns[self.lst_patterns.get(items[0])]
             if pattern is None:
@@ -165,8 +162,8 @@ class Application(tk.Frame):
 
     def pattern_in_cells_alive(self, cell, pattern):
         x, y = cell
-        for x0 in xrange(len(pattern[0])):
-            for y0 in xrange(len(pattern)):
+        for x0 in range(len(pattern[0])):
+            for y0 in range(len(pattern)):
                 x1 = (x + x0) % self.width
                 y1 = (y + y0) % self.height
                 if pattern[y0][x0] == 1 and \
@@ -193,8 +190,8 @@ class Application(tk.Frame):
 
     def draw_pattern(self, cell, pattern):
         x, y = cell
-        for x0 in xrange(len(pattern[0])):
-            for y0 in xrange(len(pattern)):
+        for x0 in range(len(pattern[0])):
+            for y0 in range(len(pattern)):
                 x1 = (x + x0) % self.width
                 y1 = (y + y0) % self.height
                 if pattern[y0][x0] == 1 and not (x1, y1) in self.cells_alive:
@@ -202,8 +199,8 @@ class Application(tk.Frame):
 
     def del_pattern(self, cell, pattern):
         x, y = cell
-        for x0 in xrange(len(pattern[0])):
-            for y0 in xrange(len(pattern)):
+        for x0 in range(len(pattern[0])):
+            for y0 in range(len(pattern)):
                 x1 = (x + x0) % self.width
                 y1 = (y + y0) % self.height
                 if pattern[y0][x0] == 1 and (x1, y1) in self.cells_alive:
@@ -219,7 +216,7 @@ class Application(tk.Frame):
                 self._run(step, steps)
                 step += 1
         else:
-            for step in xrange(int(steps)):
+            for step in range(int(steps)):
                 if not self.running or not self.cells_alive:
                     break
                 self._run(step, steps)
@@ -230,8 +227,8 @@ class Application(tk.Frame):
         self.status.config(text = "Running %s/%s" % (step, steps))
         self.life.evolve()
         self.clear_screen()
-        for x in xrange(self.width):
-            for y in xrange(self.height):
+        for x in range(self.width):
+            for y in range(self.height):
                 if self.life.get((x, y)) == 1:
                     self.toggle_cell((x, y))
         self.canvas.update()
@@ -245,12 +242,12 @@ class Life(object):
     def __init__(self, width, height):
         self.width = width
         self.height = height
-        self.world = [[0] * width for _ in xrange(height)]
+        self.world = [[0] * width for _ in range(height)]
 
     def evolve(self):
-        world_ = [[0] * self.width for _ in xrange(self.height)] # all dead
-        for x in xrange(self.width):
-            for y in xrange(self.height):
+        world_ = [[0] * self.width for _ in range(self.height)] # all dead
+        for x in range(self.width):
+            for y in range(self.height):
                 v = self.world[y][x]
                 n = self.get_neighbors((x, y))
                 t = n.count(1)

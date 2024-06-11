@@ -293,19 +293,19 @@ _gosper_glider_gun = (
 def rotate(pattern, direction=90):
     new = []
     if direction == 90:
-        for x in xrange(len(pattern[0])):
+        for x in range(len(pattern[0])):
             row = []
-            for y in xrange(len(pattern)-1, -1, -1):
+            for y in range(len(pattern)-1, -1, -1):
                 row.append(pattern[y][x])
             new.append(tuple(row))
     if direction == -90:
-        for x in xrange(len(pattern[0])-1, -1, -1):
+        for x in range(len(pattern[0])-1, -1, -1):
             row = []
-            for y in xrange(len(pattern)):
+            for y in range(len(pattern)):
                 row.append(pattern[y][x])
             new.append(tuple(row))
     if direction == 180:
-        for y in xrange(len(pattern)-1, -1, -1):
+        for y in range(len(pattern)-1, -1, -1):
             new.append(tuple(pattern[y][::-1]))
     return tuple(new)
 
